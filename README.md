@@ -1,2 +1,3 @@
-# project-one
-University of Utah Bootcamp - Project #1
+# FreeTime App :clock1: :date:  
+  
+Appointment/Meeting scheduler.
