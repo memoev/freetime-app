@@ -29,9 +29,35 @@ plans (collection)
                 availableTimes : {Sun : [8-10, 2-3], Sat: ...}
 */
 
-const createEvent = id => {
-	let hashids = new Hashids("event salt");
-	let urlHash = hashids.encode(id);
+/*
+function expects:
+    name (string)
+    email (string)
+    title (string)
+*/
+const createEvent = (name,email,title, week) => {
+    let id = 0;
+    let urlHash = "";
+    plansRef.doc('idGenNumber').get().then(doc => {
+        id = doc.data().num;
+    }).then( () => {
+        let hashids = new Hashids("event salt", 8);
+        urlHash = hashids.encode(id);
+        plansRef.doc().set({
+            "organizer" : {"name" : name, "email": email},
+            "week" : week,
+            "title" : title,
+            "urlHash": urlHash,
+            "numRecipients": 0,
+            "responses" : {}
+        })  
+        
+        plansRef.doc('idGenNumber').update({
+            num: firebase.firestore.FieldValue.increment(1)
+        })
 
-	return urlHash;
+        setTimeout(() => {
+            window.location.replace(window.location.href + "?event=" + urlHash);
+        }, 200);
+    })
 };
