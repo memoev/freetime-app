@@ -1,10 +1,11 @@
 var recipients = []
+// SendGrid API Key = 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
 
 $('#input-recepient').click(function(){
 
     event.preventDefault();
     $("tbody").empty();
-    
+
     recipientHolder = $("#recipient-holder").val();
     // console.log(recipientHolder);
     
