@@ -1,6 +1,9 @@
+var recepients = []
 
+$('#input-recepient').click(function(){
+    event.preventDefault();
 
-$('#submit').click(function(){
-    // when clicked, input values get pushed to firebase
-
+    recepients.push($("#recipient-holder").val());
+    console.log(recepients);
+    
 })
