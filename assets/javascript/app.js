@@ -5,5 +5,5 @@ $('#input-recepient').click(function(){
 
     recepients.push($("#recipient-holder").val());
     console.log(recepients);
-    
+    $("#recipient-holder").val("")
 })
