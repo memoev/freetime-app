@@ -1,43 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/css/uikit-core-rtl.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit.js"></script>
-    <link rel="stylesheet" href="../freetime-app/assets/css/style.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div
-      class="uk-container uk-flex uk-flex-center uk-flex-middle uk-margin-top"
-    >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/css/uikit-core-rtl.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit.js"></script>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="uk-container uk-flex uk-flex-center uk-flex-middle uk-margin-top">
+    <div class="uk-inline">
+      <img src="./assets/images/pexels-photo-1187439 (1).jpeg" alt="" class="uk-height-large" />
+      <div class="uk-text-center">
+        <p>Create an event that works best for EVERYONE</p>
+      </div>
       <div class="uk-inline">
-        <img
-          src="./assets/images/pexels-photo-1187439 (1).jpeg"
-          alt=""
-          class="uk-height-large"
-        />
-        <div class="uk-text-center">
-          <p>Create an event that works best for EVERYONE</p>
-        </div>
-        <div class="uk-inline">
-          <span class="uk-form-icon" uk-icon="icon: user"></span>
-          <input class="uk-input" placeholder="Event organizer" />
-        </div>
-        <div class="uk-inline">
-          <span class="uk-form-icon" uk-icon="icon: user"></span>
-          <input class="uk-input" placeholder="Event name" />
-        </div>
-        <div class="">
-          <button class="uk-button uk-button-default uk-margin-top">Text</button>
-        </div>
+        <span class="uk-form-icon" uk-icon="icon: user"></span>
+        <input class="uk-input" placeholder="Event organizer" id="event-organizer">
+      </div>
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: user"></span>
+        <input class="uk-input" placeholder="Event name" id="event-name">
+      </div>
+      <div class="">
+        <button class="uk-button uk-button-default uk-margin-top" id="submit">Get Started</button>
       </div>
     </div>
-  </body>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="./assets/javascript/app.js"></script>
+</body>
+
 </html>
