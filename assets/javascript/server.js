@@ -37,32 +37,25 @@ function expects:
 
     returns unique URL Hash
 */
-const createEvent = (name,email,title, week) => {
-    let id = 0;
-    let urlHash = "";
-    return plansRef.doc('idGenNumber').get().then(doc => {
-        id = doc.data().num;
-    }).then( () => {
-        let hashids = new Hashids("event salt", 8);
-        urlHash = hashids.encode(id);
-        plansRef.doc().set({
-            "organizer" : {"name" : name, "email": email},
-            "week" : week,
-            "title" : title,
-            "urlHash": urlHash,
-            "numRecipients": 0,
-            "responses" : {}
-        })  
-        
-        plansRef.doc('idGenNumber').update({
-            num: firebase.firestore.FieldValue.increment(1)
-        })
+const createEvent = async (name, email, title, week) => {
+	return new Promise(async (resolve, reject) => {
+		let doc = await plansRef.doc("idGenNumber").get();
+		let id = doc.data().num;
+		let hashids = new Hashids("event salt", 8);
+		urlHash = hashids.encode(id);
+		await plansRef.doc().set({
+			organizer: { name: name, email: email },
+			week: week,
+			title: title,
+			urlHash: urlHash,
+			numRecipients: 0,
+			responses: {}
+		});
 
-        return urlHash
+		await plansRef.doc("idGenNumber").update({
+			num: firebase.firestore.FieldValue.increment(1)
+		});
 
-
-        
-    })
+		resolve(urlHash);
+	});
 };
-
-
