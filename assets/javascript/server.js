@@ -34,11 +34,13 @@ function expects:
     name (string)
     email (string)
     title (string)
+
+    returns unique URL Hash
 */
 const createEvent = (name,email,title, week) => {
     let id = 0;
     let urlHash = "";
-    plansRef.doc('idGenNumber').get().then(doc => {
+    return plansRef.doc('idGenNumber').get().then(doc => {
         id = doc.data().num;
     }).then( () => {
         let hashids = new Hashids("event salt", 8);
@@ -56,8 +58,11 @@ const createEvent = (name,email,title, week) => {
             num: firebase.firestore.FieldValue.increment(1)
         })
 
-        setTimeout(() => {
-            window.location.replace(window.location.href + "?event=" + urlHash);
-        }, 200);
+        return urlHash
+
+
+        
     })
 };
+
+
