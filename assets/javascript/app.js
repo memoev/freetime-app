@@ -23,4 +23,14 @@ $("#submit").click(function(e) {
   e.preventDefault();
 });
 
-
+$("#time-submit").click(e => {
+  e.preventDefault();
+  let userChecks = [];
+  for (let i = 0; i < 42; i++) {
+    let check = $("#input-" + i);
+    if (check.is(":checked")) {
+      userChecks.push(check.attr("data-time"));
+      console.log(userChecks);
+    }
+  }
+});
