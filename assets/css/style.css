@@ -1,7 +1,7 @@
 body {
   background-color: #0b7189;
   color: white;
-  height: 100vh;
+  height: 100%;
 }
 
 .free-time {
@@ -16,3 +16,15 @@ body {
 /* .uk-legend {
     color: #ffffff;
 } */
+
+.uk-grid {
+  font-size: 1.4em;
+}
+
+button {
+  transition: 0.7s;
+}
+
+button:hover {
+  border-radius: 5px;
+}
