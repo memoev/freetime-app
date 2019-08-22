@@ -1,6 +1,10 @@
-
+const eventRedirect = async (name,email,title,week) => {
+    let urlHash = await createEvent(name,email,title,week)
+    window.location.replace(window.location.href + "?event=" + urlHash);
+}
 
 $('#submit').click(function(){
+    eventRedirect("Gerritt","test@tester.com","Big Party", "8/18/2019")
     // when clicked, input values get pushed to firebase
 })
 
@@ -12,11 +16,8 @@ if (urlParams.has("event")) {
 
 
 } else {
-    const eventRedirect = async (name,email,title,week) => {
-        let urlHash = await createEvent(name,email,title,week)
-        window.location.replace(window.location.href + "?event=" + urlHash);
-    }
+    
 
-    // example event call: eventRedirect("Cody","test@tester.com","Big Party", "8/18/2019")
+    
 }
 
