@@ -1,3 +1,11 @@
+// Google calendar credentials
+// Client ID
+// 838362569768-7a7ht805jfah89m891426kdhu9r4fufu.apps.googleusercontent.com
+// Client Secret
+// YAXoXdXkLgeDGDkfcNsVG5UF
+// API Key
+// AIzaSyCcauF0Bw_PxIWoHyXfWVntgcnIu0Bx3Vc
+
 const eventRedirect = async (name, email, title, week) => {
   let urlHash = await createEvent(name, email, title, week);
   window.location.replace(window.location.href + "?event=" + urlHash);
