@@ -502,8 +502,8 @@
       </button>
     </div>
     <div class="uk-container">
-      <button id="authorize_button" class="uk-button">Authorize</button>
-      <button id="signout_button" class="uk-button">Sign Out</button>
+      <button id="authorize_button" class="uk-button-default">Authorize</button>
+      <button id="signout_button" class="uk-button-default">Sign Out</button>
     </div>
     <div class="uk-container">
       <pre id="content" style="white-space: pre-wrap;"></pre>
@@ -513,6 +513,10 @@
     <!-- link to JQuery library -->
     <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-firestore.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+    onload="this.onload=function(){};handleClientLoad()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  </script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -523,6 +527,7 @@
       src="./assets/javascript/hashids.min.js"
     ></script>
     <script src="./assets/javascript/server.js"></script>
+   
     <script src="./assets/javascript/app.js"></script>
   </body>
 </html>
