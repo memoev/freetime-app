@@ -35,18 +35,18 @@ function expects:
 
     returns promise and resolves with unique URL Hash
 */
-const createEvent = async (name, email, title, week) => {
+const createEvent = async (name, title, week, numRecipients) => {
 	return new Promise(async resolve => {
 		let doc = await plansRef.doc("idGenNumber").get();
 		let id = doc.data().num;
 		let hashids = new Hashids("event salt", 8);
 		urlHash = hashids.encode(id);
 		await plansRef.doc().set({
-			organizer: { name: name, email: email },
+			organizer: name,
 			week: week,
 			title: title,
 			urlHash: urlHash,
-			numRecipients: 0
+			numRecipients: numRecipients
 		});
 
 		await plansRef.doc("idGenNumber").update({
@@ -66,10 +66,10 @@ object {
 }
 	returns promise and resolves with success message
 */
-const storeResponse = ({ serverRoomID, name, response = [] } = {}) => {
+const storeResponse = ({ serverEventID, name, response = [] } = {}) => {
 	return new Promise(async resolve => {
 		await plansRef
-			.doc(serverRoomID)
+			.doc(serverEventID)
 			.collection("responses")
 			.doc(name)
 			.set({ response: response });
@@ -77,6 +77,11 @@ const storeResponse = ({ serverRoomID, name, response = [] } = {}) => {
 	});
 };
 
+/*
+function expects:
+urlHash (string)
+
+returns promise and resolves with serverEventID*/
 const getEventID = async urlHash => {
 	return new Promise(async resolve => {
 		let snapshot = await plansRef.where("urlHash", "==", urlHash).get();
@@ -87,18 +92,74 @@ const getEventID = async urlHash => {
 	});
 };
 
-const popularTime = async () => {
-	//pulled from stack overflow
-	/* var store = ["1", "2", "2", "3", "4"];
-	var frequency = {}; // array of frequency.
-	var max = 0; // holds the max frequency.
-	var result; // holds the max frequency element.
-	for (var v in store) {
-	  frequency[store[v]] = (frequency[store[v]] || 0) + 1; // increment frequency.
-	  if (frequency[store[v]] > max) {
-		// is this frequency > max so far ?
-		max = frequency[store[v]]; // update max.
-		result = store[v]; // update result.
-	  }
-	} */
-  }
+/*
+function expects :
+serverEventID (string)
+returns:
+promise and resolves withstatus as object {numResponded: (int), done: (boolean)}
+*/
+const getStatus = async serverEventID => {
+	return new Promise(async resolve => {
+		let snapshot = await plansRef
+			.doc(serverEventID)
+			.collection("responses")
+			.get();
+		let numResponded = 0;
+		snapshot.forEach(() => {
+			numResponded++;
+		});
+		let doc = await plansRef.doc(serverEventID).get();
+		let numRecipients = doc.data().numRecipients;
+		resolve({
+			numResponded: numResponded,
+			done: numRecipients === numResponded
+		});
+	});
+};
+
+/*
+function expects:
+serverEventID (string)
+
+returns:
+{bestTime: (string),
+conflicts: ["names"]
+}
+*/
+const bestTime = async serverEventID => {
+	return new Promise(async resolve => {
+		let snapshot = await plansRef
+			.doc(serverEventID)
+			.collection("responses")
+			.get();
+		let allResponses = [];
+		snapshot.forEach(doc => {
+			allResponses.push(doc.data().response);
+		});
+
+		let frequency = {};
+		let max = 0;
+		let result = {};
+
+		for (let v in allResponses) {
+			frequency[allResponses[v]] = (frequency[allResponses[v]] || 0) + 1; // increment frequency.
+			if (frequency[allResponses[v]] > max) {
+				max = frequency[allResponses[v]]; // update max.
+				result.bestTime = allResponses[v]; // update result.
+			}
+		}
+		let snapshot = await plansRef
+			.doc(serverEventID)
+			.collection("responses")
+			.get();
+		let conflicts = [];
+		snapshot.forEach(doc => {
+			if (doc.data().response.includes(result)){
+				conflicts.push(doc.id);
+			}
+		});
+		result.conflicts = conflicts;
+		
+		resolve(result);
+	});
+};
