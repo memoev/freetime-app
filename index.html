@@ -1,521 +1,528 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<meta
-			name="google-site-verification"
-			content="HUpflvn8Y4JuGs86Ryc9X1VDM7DUFrESSUYRse7CY6Y"
-		/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="google-site-verification"
+      content="HUpflvn8Y4JuGs86Ryc9X1VDM7DUFrESSUYRse7CY6Y"
+    />
 
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/css/uikit-core-rtl.css"
-		/>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit-icons.min.js"></script>
-		<link rel="stylesheet" href="./assets/css/style.css" />
-		<title>FreeTime Scheduling App</title>
-	</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/css/uikit-core-rtl.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>FreeTime Scheduling App</title>
+  </head>
 
-	<body>
-		<nav class="uk-navbar-container uk-margin" uk-navbar>
-			<div class="uk-navbar-left">
-				<a class="uk-navbar-item uk-logo" id="home" href="./index.html"
-					>FreeTime</a
-				>
-			</div>
-		</nav>
+  <body>
+    <nav class="uk-navbar-container uk-margin" uk-navbar>
+      <div class="uk-navbar-left">
+        <a class="uk-navbar-item uk-logo" id="home" href="./index.html"
+          >FreeTime</a
+        >
+      </div>
+    </nav>
 
-		<div
-            class="uk-container uk-flex uk-flex-center uk-flex-middle uk-margin-top"
-            id = "landing-page"
-		>
-			<div class="uk-inline">
-				<img
-					src="./assets/images/pexels-photo-1187439 (1).jpeg"
-					alt=""
-					class="uk-height-large"
-				/>
-				<div class="uk-text-center">
-					<p>Create an event and find a time that works best for EVERYONE</p>
-				</div>
-				<div class="uk-inline">
-					<span class="uk-form-icon" uk-icon="icon: user"></span>
-					<input
-						class="uk-input"
-						placeholder="Event organizer"
-						id="event-organizer"
-					/>
-				</div>
-				<div class="uk-inline">
-					<span class="uk-form-icon" uk-icon="icon: calendar"></span>
-					<input class="uk-input" placeholder="Event name" id="event-name" />
-				</div>
-				<div class="">
-					<button
-						class="uk-button uk-button-default uk-margin-top"
-						id="get-started"
-					>
-						Get Started
-					</button>
-				</div>
-			</div>
-		</div>
+    <div
+      class="uk-container uk-flex uk-flex-center uk-flex-middle uk-margin-top"
+      id="landing-page"
+    >
+      <div class="uk-inline">
+        <img
+          src="./assets/images/pexels-photo-1187439 (1).jpeg"
+          alt=""
+          class="uk-height-large"
+        />
+        <div class="uk-text-center">
+          <p>Create an event and find a time that works best for EVERYONE</p>
+        </div>
+        <div class="uk-inline">
+          <span class="uk-form-icon" uk-icon="icon: user"></span>
+          <input
+            class="uk-input"
+            placeholder="Event organizer"
+            id="event-organizer"
+          />
+        </div>
+        <div class="uk-inline">
+          <span class="uk-form-icon" uk-icon="icon: calendar"></span>
+          <input class="uk-input" placeholder="Event name" id="event-name" />
+        </div>
+        <div class="">
+          <button
+            class="uk-button uk-button-default uk-margin-top"
+            id="get-started"
+          >
+            Get Started
+          </button>
+        </div>
+      </div>
+    </div>
 
-        <div class="uk-container uk-margin-medium"
-        id="response-container">
-			<div class="uk-grid">
-				<div class="uk-width-1-3">Day of the Week</div>
-				<div class="uk-width-2-3">
-					<div class="uk-grid">
-						<div class="uk-width-1-6">8-10 am</div>
-						<div class="uk-width-1-6">10-12 pm</div>
-						<div class="uk-width-1-6">12-2 pm</div>
-						<div class="uk-width-1-6">2-4 pm</div>
-						<div class="uk-width-1-6">4-6 pm</div>
-						<div class="uk-width-1-6">6-8 pm</div>
-					</div>
-				</div>
-			</div>
-			<div class="uk-grid">
-				<div class="uk-width-1-3">Sunday</div>
-				<div class="uk-width-2-3">
-					<div class="uk-grid">
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								name=""
-								id="input-0"
-								data-time="sunday-8-10-am"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								name=""
-								id="input-1"
-								data-time="sunday-10-12-pm"
-								class="uk-checkbox"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								name=""
-								id="input-2"
-								data-time="sunday-12-2-pm"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								name=""
-								id="input-3"
-								data-time="sunday-2-4-pm"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								name=""
-								id="input-4"
-								data-time="sunday-4-6-pm"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								name=""
-								id="input-5"
-								data-time="sunday-6-8-pm"
-							/>
-						</div>
-					</div>
-				</div>
-				<div class="uk-width-1-3">Monday</div>
-				<div class="uk-width-2-3">
-					<div class="uk-grid">
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="monday-8-10-am"
-								name=""
-								id="input-6"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="monday-10-12-pm"
-								name=""
-								id="input-7"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="monday-12-2-pm"
-								name=""
-								id="input-8"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="monday-2-4-pm"
-								name=""
-								id="input-9"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="monday-4-6-pm"
-								name=""
-								id="input-10"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="monday-6-8-pm"
-								name=""
-								id="input-11"
-							/>
-						</div>
-					</div>
-				</div>
-				<div class="uk-width-1-3">Tuesday</div>
-				<div class="uk-width-2-3">
-					<div class="uk-grid">
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="tuesday-8-10-am"
-								name=""
-								id="input-12"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="tuesday-10-12-pm"
-								name=""
-								id="input-13"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="tuesday-12-2-pm"
-								name=""
-								id="input-14"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="tuesday-2-4-pm"
-								name=""
-								id="input-15"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="tuesday-4-6-pm"
-								name=""
-								id="input-16"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="tuesday-6-8-pm"
-								name=""
-								id="input-17"
-							/>
-						</div>
-					</div>
-				</div>
-				<div class="uk-width-1-3">Wednesday</div>
-				<div class="uk-width-2-3">
-					<div class="uk-grid">
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="wednesday-8-10-am"
-								name=""
-								id="input-18"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="wednesday-10-12-pm"
-								name=""
-								id="input-19"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="wednesday-12-2-pm"
-								name=""
-								id="input-20"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="wednesday-2-4-pm"
-								name=""
-								id="input-21"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="wednesday-4-6-pm"
-								name=""
-								id="input-22"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="wednesday-6-8-pm"
-								name=""
-								id="input-23"
-							/>
-						</div>
-					</div>
-				</div>
-				<div class="uk-width-1-3">Thursday</div>
-				<div class="uk-width-2-3">
-					<div class="uk-grid">
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="thursday-8-10-am"
-								name=""
-								id="input-24"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="thursday-10-12-pm"
-								name=""
-								id="input-25"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="thursday-12-2-pm"
-								name=""
-								id="input-26"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="thursday-2-4-pm"
-								name=""
-								id="input-27"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="thursday-4-6-pm"
-								name=""
-								id="input-28"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="thursday-6-8-pm"
-								name=""
-								id="input-29"
-							/>
-						</div>
-					</div>
-				</div>
-				<div class="uk-width-1-3">Friday</div>
-				<div class="uk-width-2-3">
-					<div class="uk-grid">
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="friday-8-10-am"
-								name=""
-								id="input-30"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="friday-10-12-pm"
-								name=""
-								id="input-31"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="friday-12-2-pm"
-								name=""
-								id="input-32"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="friday-2-4-pm"
-								name=""
-								id="input-33"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="friday-4-6-pm"
-								name=""
-								id="input-34"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="friday-6-8-pm"
-								name=""
-								id="input-35"
-							/>
-						</div>
-					</div>
-				</div>
-				<div class="uk-width-1-3">Saturday</div>
-				<div class="uk-width-2-3">
-					<div class="uk-grid">
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="saturday-8-10-am"
-								name=""
-								id="input-36"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="saturday-10-12-pm"
-								name=""
-								id="input-37"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="saturday-12-2-pm"
-								name=""
-								id="input-38"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="saturday-2-4-pm"
-								name=""
-								id="input-39"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="saturday-4-6-pm"
-								name=""
-								id="input-40"
-							/>
-						</div>
-						<div class="uk-width-1-6">
-							<input
-								type="checkbox"
-								class="uk-checkbox"
-								data-time="saturday-6-8-pm"
-								name=""
-								id="input-41"
-							/>
-						</div>
-					</div>
-				</div>
-			</div>
-			<button
-				class="uk-button uk-button-default uk-margin-medium"
-				id="time-submit"
-			>
-				Submit Times
-			</button>
-		</div>
+    <div class="uk-container uk-margin-medium" id="response-container">
+      <div class="uk-grid">
+        <div class="uk-width-1-3">Day of the Week</div>
+        <div class="uk-width-2-3">
+          <div class="uk-grid">
+            <div class="uk-width-1-6">8-10 am</div>
+            <div class="uk-width-1-6">10-12 pm</div>
+            <div class="uk-width-1-6">12-2 pm</div>
+            <div class="uk-width-1-6">2-4 pm</div>
+            <div class="uk-width-1-6">4-6 pm</div>
+            <div class="uk-width-1-6">6-8 pm</div>
+          </div>
+        </div>
+      </div>
+      <div class="uk-grid">
+        <div class="uk-width-1-3">Sunday</div>
+        <div class="uk-width-2-3">
+          <div class="uk-grid">
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                name=""
+                id="input-0"
+                data-time="sunday-8-10-am"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                name=""
+                id="input-1"
+                data-time="sunday-10-12-pm"
+                class="uk-checkbox"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                name=""
+                id="input-2"
+                data-time="sunday-12-2-pm"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                name=""
+                id="input-3"
+                data-time="sunday-2-4-pm"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                name=""
+                id="input-4"
+                data-time="sunday-4-6-pm"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                name=""
+                id="input-5"
+                data-time="sunday-6-8-pm"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="uk-width-1-3">Monday</div>
+        <div class="uk-width-2-3">
+          <div class="uk-grid">
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="monday-8-10-am"
+                name=""
+                id="input-6"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="monday-10-12-pm"
+                name=""
+                id="input-7"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="monday-12-2-pm"
+                name=""
+                id="input-8"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="monday-2-4-pm"
+                name=""
+                id="input-9"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="monday-4-6-pm"
+                name=""
+                id="input-10"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="monday-6-8-pm"
+                name=""
+                id="input-11"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="uk-width-1-3">Tuesday</div>
+        <div class="uk-width-2-3">
+          <div class="uk-grid">
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="tuesday-8-10-am"
+                name=""
+                id="input-12"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="tuesday-10-12-pm"
+                name=""
+                id="input-13"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="tuesday-12-2-pm"
+                name=""
+                id="input-14"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="tuesday-2-4-pm"
+                name=""
+                id="input-15"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="tuesday-4-6-pm"
+                name=""
+                id="input-16"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="tuesday-6-8-pm"
+                name=""
+                id="input-17"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="uk-width-1-3">Wednesday</div>
+        <div class="uk-width-2-3">
+          <div class="uk-grid">
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="wednesday-8-10-am"
+                name=""
+                id="input-18"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="wednesday-10-12-pm"
+                name=""
+                id="input-19"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="wednesday-12-2-pm"
+                name=""
+                id="input-20"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="wednesday-2-4-pm"
+                name=""
+                id="input-21"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="wednesday-4-6-pm"
+                name=""
+                id="input-22"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="wednesday-6-8-pm"
+                name=""
+                id="input-23"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="uk-width-1-3">Thursday</div>
+        <div class="uk-width-2-3">
+          <div class="uk-grid">
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="thursday-8-10-am"
+                name=""
+                id="input-24"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="thursday-10-12-pm"
+                name=""
+                id="input-25"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="thursday-12-2-pm"
+                name=""
+                id="input-26"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="thursday-2-4-pm"
+                name=""
+                id="input-27"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="thursday-4-6-pm"
+                name=""
+                id="input-28"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="thursday-6-8-pm"
+                name=""
+                id="input-29"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="uk-width-1-3">Friday</div>
+        <div class="uk-width-2-3">
+          <div class="uk-grid">
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="friday-8-10-am"
+                name=""
+                id="input-30"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="friday-10-12-pm"
+                name=""
+                id="input-31"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="friday-12-2-pm"
+                name=""
+                id="input-32"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="friday-2-4-pm"
+                name=""
+                id="input-33"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="friday-4-6-pm"
+                name=""
+                id="input-34"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="friday-6-8-pm"
+                name=""
+                id="input-35"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="uk-width-1-3">Saturday</div>
+        <div class="uk-width-2-3">
+          <div class="uk-grid">
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="saturday-8-10-am"
+                name=""
+                id="input-36"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="saturday-10-12-pm"
+                name=""
+                id="input-37"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="saturday-12-2-pm"
+                name=""
+                id="input-38"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="saturday-2-4-pm"
+                name=""
+                id="input-39"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="saturday-4-6-pm"
+                name=""
+                id="input-40"
+              />
+            </div>
+            <div class="uk-width-1-6">
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                data-time="saturday-6-8-pm"
+                name=""
+                id="input-41"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="uk-button uk-button-default uk-margin-medium"
+        id="time-submit"
+      >
+        Submit Times
+      </button>
+    </div>
+    <div class="uk-container">
+      <button id="authorize_button" class="uk-button">Authorize</button>
+      <button id="signout_button" class="uk-button">Sign Out</button>
+    </div>
+    <div class="uk-container">
+      <pre id="content" style="white-space: pre-wrap;"></pre>
+    </div>
 
-		<!-- link to JS file -->
-		<!-- link to JQuery library -->
-		<script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-firestore.js"></script>
-		<script
-			  src="https://code.jquery.com/jquery-3.4.1.min.js"
-			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-			  crossorigin="anonymous"></script>
-		<script
-			type="text/javascript"
-			src="./assets/javascript/hashids.min.js"
-		></script>
-		<script src="./assets/javascript/server.js"></script>
-		<script src="./assets/javascript/app.js"></script>
-	</body>
+    <!-- link to JS file -->
+    <!-- link to JQuery library -->
+    <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-firestore.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./assets/javascript/hashids.min.js"
+    ></script>
+    <script src="./assets/javascript/server.js"></script>
+    <script src="./assets/javascript/app.js"></script>
+  </body>
 </html>
