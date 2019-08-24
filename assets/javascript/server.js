@@ -154,12 +154,12 @@ const bestTime = async serverEventID => {
 			.get();
 		let conflicts = [];
 		snapshot.forEach(doc => {
-			if (doc.data().response.includes(result)){
+			if (doc.data().response.includes(result)) {
 				conflicts.push(doc.id);
 			}
 		});
 		result.conflicts = conflicts;
-		
+
 		resolve(result);
 	});
 };
