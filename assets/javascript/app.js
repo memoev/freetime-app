@@ -14,51 +14,39 @@ const eventRedirect = async ({ name, email, title, week } = {}) => {
 //pulls URL from browser
 let urlParams = new URLSearchParams(window.location.search);
 
-//checks if it has an event tag
-if (urlParams.has("event")) {
+if (urlParams.has("event")) { //checks if it has an event tag
 	//this block only runs if the user is on a page that contains an event query string
 	urlHash = urlParams.get("event");
 	let serverEventID = getEventID(urlHash).then(() => {
-		//TODO: Display response screen first then listener for
-		$("#time-submit").click(e => {
-			e.preventDefault();
-			let userChecks = [];
-			for (let i = 0; i < 42; i++) {
-				let check = $("#input-" + i);
-				if (check.is(":checked")) {
-					userChecks.push(check.attr("data-time"));
-				}
-			}
-			// storeResponse({serverEventID, name, userChecks});
-		});
+    $("#response.container").fadeIn();
+    if (windows.location.href.includes("&organizer=true")) {
+      // Runs getStatus and bestTime functions
+    } else {
+      //TODO: Display response screen first then listener for
+      $("#time-submit").click(e => {
+        e.preventDefault();
+        let userChecks = [];
+        for (let i = 0; i < 42; i++) {
+          let check = $("#input-" + i);
+          if (check.is(":checked")) {
+            userChecks.push(check.attr("data-time"));
+          }
+        }
+        // storeResponse({serverEventID, name, userChecks});
+      });
+    }
 	});
-} else {
+  } else {
 	$("#landing-page").fadeIn();
 	//TODO: take inputs to pass into eventRedirect
 
-	$("#submit").click(function() {
+	$("#get-started").click(function() {
 		eventRedirect("Gerritt", "test@tester.com", "Big Party", "8/18/2019");
 		// when clicked, input values get pushed to firebase
 	});
-}
+  } 
 
 // example event call: eventRedirect({name: "Cody",email: "test@tester.com",title: "Big Party", week: "8/18/2019"})
-
-$("document").ready(function() {
-	$(".participant").hide();
-	$(".date-selection").hide();
-});
-
-$("#get-started").click(function() {
-	$(".landing-page").hide();
-	$(".participant").show();
-});
-
-$("#finish").click(e => {
-	e.preventDefault();
-	$(".participant").hide();
-	$(".date-selection").show();
-});
 
 $("#take-it-home").click(function() {
 	// element id must go in this line
