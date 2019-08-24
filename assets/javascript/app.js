@@ -29,6 +29,8 @@ function handleClientLoad() {
   gapi.load('client:auth2', initClient);
 }
 
+handleClientLoad();
+
 /**
  *  Initializes the API client library and sets up sign-in state
  *  listeners.
@@ -72,6 +74,7 @@ function updateSigninStatus(isSignedIn) {
  */
 function handleAuthClick(event) {
   gapi.auth2.getAuthInstance().signIn();
+  console.log(event);
 }
 
 /**
