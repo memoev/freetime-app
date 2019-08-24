@@ -31,14 +31,12 @@ plans (collection)
 
 /*
 function expects:
-    name (string)
-    email (string)
-    title (string)
+    object = { name, email, title, week}
 
-    returns unique URL Hash
+    returns promise and resolves with unique URL Hash
 */
 const createEvent = async (name, email, title, week) => {
-	return new Promise(async (resolve, reject) => {
+	return new Promise(async resolve => {
 		let doc = await plansRef.doc("idGenNumber").get();
 		let id = doc.data().num;
 		let hashids = new Hashids("event salt", 8);
@@ -48,8 +46,7 @@ const createEvent = async (name, email, title, week) => {
 			week: week,
 			title: title,
 			urlHash: urlHash,
-			numRecipients: 0,
-			responses: {}
+			numRecipients: 0
 		});
 
 		await plansRef.doc("idGenNumber").update({
@@ -57,5 +54,35 @@ const createEvent = async (name, email, title, week) => {
 		});
 
 		resolve(urlHash);
+	});
+};
+
+/*
+function expects:
+object {
+	serverRoomID
+	name
+	array of times
+}
+	returns promise and resolves with success message
+*/
+const storeResponse = ({ serverRoomID, name, response = [] } = {}) => {
+	return new Promise(async resolve => {
+		await plansRef
+			.doc(serverRoomID)
+			.collection("responses")
+			.doc(name)
+			.set({ response: response });
+		resolve("Response recorded!");
+	});
+};
+
+const getEventID = async urlHash => {
+	return new Promise(async resolve => {
+		let snapshot = await plansRef.where("urlHash", "==", urlHash).get();
+		snapshot.forEach(doc => {
+			serverEventID = doc.id;
+		});
+		resolve(serverEventID);
 	});
 };
