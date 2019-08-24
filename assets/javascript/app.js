@@ -46,11 +46,7 @@ if (urlParams.has("event")) {
 		//code to display response screen and then listen on submit and call storeResponse
 	});
 	
-} else {
-	const eventRedirect = async ({ name, email, title, week } = {}) => {
-		let urlHash = await createEvent(name, email, title, week);
-		window.location.replace(window.location.href + "?event=" + urlHash);
-	};
+};
 
 	// example event call: eventRedirect({name: "Cody",email: "test@tester.com",title: "Big Party", week: "8/18/2019"})
 
@@ -94,6 +90,33 @@ $("#time-submit").click(e => {
   }
 });
 
+$('#take-it-home').click(function(){ // element id must go in this line
+    showLink();
+});
+
+// function to render textarea with the page url and copies it clipboard
+var showLink = () => {
+    let body = $(document.body)
+    let url = window.location.href;
+    
+    body.empty();
+    newDiv = $('<div>');
+    newTextArea = $('<textarea>');
+    newTextArea.text(url);
+    newTextArea.select();
+    newLegend = $('<h1>');
+    newLegend.text('Share this link with the people you want to invite');
+    newSubLegend = $('<h3>')
+    newSubLegend.text('Link has been copied to clipboard');
+    
+    newDiv.append(newTextArea);
+    newDiv.append(newLegend);
+    newDiv.append(newSubLegend);
+    body.append(newDiv);
+
+	// copy to clipboard happends here!
+    document.execCommand("copy");
+}
 function popularTime() {
   //pulled from stack overflow
   /* var store = ["1", "2", "2", "3", "4"];
