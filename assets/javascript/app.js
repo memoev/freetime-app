@@ -3,7 +3,6 @@ const eventRedirect = async (name, email, title, week) => {
 	window.location.replace(window.location.href + "?event=" + urlHash);
 };
 
-
 $("#submit").click(function() {
 	eventRedirect("Gerritt", "test@tester.com", "Big Party", "8/18/2019");
 	// when clicked, input values get pushed to firebase
@@ -28,26 +27,26 @@ if (urlParams.has("event")) {
 }
 
 $("document").ready(function() {
-  $(".participant").hide();
-  $(".date-selection").hide();
+	$(".participant").hide();
+	$(".date-selection").hide();
 });
 
 $("#home").click(() => {
-  location.reload();
+	location.reload();
 });
 
 $("#get-started").click(function() {
-  $(".landing-page").hide();
-  $(".participant").show();
+	$(".landing-page").hide();
+	$(".participant").show();
 });
 
 $("#finish").click(e => {
-  e.preventDefault();
-  $(".participant").hide();
-  $(".date-selection").show();
+	e.preventDefault();
+	$(".participant").hide();
+	$(".date-selection").show();
 });
 
 $("#submit").click(function(e) {
-  // when clicked, input values get pushed to firebase
-  e.preventDefault();
+	// when clicked, input values get pushed to firebase
+	e.preventDefault();
 });
