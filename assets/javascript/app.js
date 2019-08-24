@@ -46,3 +46,31 @@ $("#submit").click(function(e) {
   // when clicked, input values get pushed to firebase
   e.preventDefault();
 });
+
+$('#take-it-home').click(function(){ // element id must go in this line
+    showLink();
+});
+
+// function to render textarea with the page url and copies it clipboard
+var showLink = () => {
+    let body = $(document.body)
+    let url = window.location.href;
+    
+    body.empty();
+    newDiv = $('<div>');
+    newTextArea = $('<textarea>');
+    newTextArea.text(url);
+    newTextArea.select();
+    newLegend = $('<h1>');
+    newLegend.text('Share this link with the people you want to invite');
+    newSubLegend = $('<h3>')
+    newSubLegend.text('Link has been copied to clipboard');
+    
+    newDiv.append(newTextArea);
+    newDiv.append(newLegend);
+    newDiv.append(newSubLegend);
+    body.append(newDiv);
+
+	// copy to clipboard happends here!
+    document.execCommand("copy");
+}
