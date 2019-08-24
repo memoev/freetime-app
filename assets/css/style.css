@@ -1,16 +1,21 @@
+#landing-page,
+#response-container {
+	display: none;
+}
+
 body {
-  background-color: #0b7189;
-  color: white;
-  height: 100%;
+	background-color: #0b7189;
+	color: white;
+	height: 100%;
 }
 
 .free-time {
-  text-align: center;
-  color: white;
+	text-align: center;
+	color: white;
 }
 
 .uk-card {
-  padding: 20px;
+	padding: 20px;
 }
 
 /* .uk-legend {
@@ -18,13 +23,13 @@ body {
 } */
 
 .uk-grid {
-  font-size: 1.4em;
+	font-size: 1.4em;
 }
 
 button {
-  transition: 0.7s;
+	transition: 0.7s;
 }
 
 button:hover {
-  border-radius: 5px;
+	border-radius: 5px;
 }
