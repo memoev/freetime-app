@@ -70,20 +70,34 @@ var showLink = () => {
 	let body = $(document.body);
 	let url = window.location.href;
 
+  // create html elements dynamically
 	body.empty();
-	newDiv = $("<div>");
-	newTextArea = $("<textarea>");
+  newDiv = $("<div>");
+	newDiv2 = $("<div>");  
+  newTextArea = $("<textarea>");
+	newTextArea2 = $("<textarea>");  
 	newTextArea.text(url);
+  newTextArea2.text(url + "&organizer=true");
 	newTextArea.select();
-	newLegend = $("<h1>");
+  newLegend = $("<h1>");
+	newLegend2 = $("<h1>");  
 	newLegend.text("Share this link with the people you want to invite");
+	newLegend2.text("Organizer Link!");
 	newSubLegend = $("<h3>");
-	newSubLegend.text("Link has been copied to clipboard");
-
+  newSubLegend.text("Link has been copied to clipboard");
+  
+  // append elements with share link url
 	newDiv.append(newTextArea);
 	newDiv.append(newLegend);
-	newDiv.append(newSubLegend);
-	body.append(newDiv);
+  newDiv.append(newSubLegend);
+  
+  // append elements with organizer url
+  newDiv2.append(newTextArea2);
+  newDiv2.append(newLegend2);
+  
+  body.append(newDiv);    
+  body.append(newDiv2);
+  
 
 	// copy to clipboard happends here!
 	document.execCommand("copy");
