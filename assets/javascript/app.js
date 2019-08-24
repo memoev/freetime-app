@@ -139,7 +139,7 @@ if (urlParams.has("event")) { //checks if it has an event tag
 	urlHash = urlParams.get("event");
 	let serverEventID = getEventID(urlHash).then(() => {
     $("#response.container").fadeIn();
-    if (windows.location.href.includes("&organizer=true")) {
+    if (urlParams.get("organizer")) {
       // Runs getStatus and bestTime functions
     } else {
       //TODO: Display response screen first then listener for
