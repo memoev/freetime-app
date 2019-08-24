@@ -148,7 +148,7 @@ const bestTime = async serverEventID => {
 				result.bestTime = allResponses[v]; // update result.
 			}
 		}
-		let snapshot = await plansRef
+		snapshot = await plansRef
 			.doc(serverEventID)
 			.collection("responses")
 			.get();
