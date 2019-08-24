@@ -3,6 +3,7 @@ const eventRedirect = async (name, email, title, week) => {
 	window.location.replace(window.location.href + "?event=" + urlHash);
 };
 
+
 $("#submit").click(function() {
 	eventRedirect("Gerritt", "test@tester.com", "Big Party", "8/18/2019");
 	// when clicked, input values get pushed to firebase
@@ -12,7 +13,11 @@ let urlParams = new URLSearchParams(window.location.search);
 
 if (urlParams.has("event")) {
 	//this block only runs if the user is on a page that contains an event query string
-	roomHash = urlParams.get("event");
+	urlHash = urlParams.get("event");
+	let serverEventID = getEventID(urlHash).then(() => {
+		//code to display response screen and then listen on submit and call storeResponse
+	});
+	
 } else {
 	const eventRedirect = async ({ name, email, title, week } = {}) => {
 		let urlHash = await createEvent(name, email, title, week);
