@@ -41,36 +41,44 @@ if (urlParams.has("event")) {
   // example event call: eventRedirect({name: "Cody",email: "test@tester.com",title: "Big Party", week: "8/18/2019"})
 
 	//this block only runs if the user is on a page that contains an event query string
-	roomHash = urlParams.get("event");
-};
+	urlHash = urlParams.get("event");
+	let serverEventID = getEventID(urlHash).then(() => {
+		//code to display response screen and then listen on submit and call storeResponse
+	});
+	
+} else {
+	const eventRedirect = async ({ name, email, title, week } = {}) => {
+		let urlHash = await createEvent(name, email, title, week);
+		window.location.replace(window.location.href + "?event=" + urlHash);
+	};
 
 	// example event call: eventRedirect({name: "Cody",email: "test@tester.com",title: "Big Party", week: "8/18/2019"})
 
 }
 
 $("document").ready(function() {
-  $(".participant").hide();
-  $(".date-selection").hide();
+	$(".participant").hide();
+	$(".date-selection").hide();
 });
 
 $("#home").click(() => {
-  location.reload();
+	location.reload();
 });
 
 $("#get-started").click(function() {
-  $(".landing-page").hide();
-  $(".participant").show();
+	$(".landing-page").hide();
+	$(".participant").show();
 });
 
 $("#finish").click(e => {
-  e.preventDefault();
-  $(".participant").hide();
-  $(".date-selection").show();
+	e.preventDefault();
+	$(".participant").hide();
+	$(".date-selection").show();
 });
 
 $("#submit").click(function(e) {
-  // when clicked, input values get pushed to firebase
-  e.preventDefault();
+	// when clicked, input values get pushed to firebase
+	e.preventDefault();
 });
 
 
