@@ -5,10 +5,24 @@
 	display: none;
 }
 
-body {
+html {
 	background-color: #0b7189;
 	color: white;
 	height: 100%;
+}
+
+h3, h5 {
+	margin: 0;
+}
+
+.inpubox {
+	width: 200px;
+	left: 30px;
+}
+
+.uk-container {
+	width: 60%;
+	padding-bottom: 1em;
 }
 
 .free-time {
@@ -30,9 +44,7 @@ body {
 
 button {
 	transition: 0.7s;
-}
-
-button:hover {
+	float: right;
 	border-radius: 5px;
 }
 
@@ -40,4 +52,5 @@ button:hover {
 	color: #DC143C;
 	font-size: 12px;
 	height: 20px;
+	padding-left: 30px;
 }
