@@ -18,15 +18,13 @@ DATA STRUCTURE
 
 plans (collection)
     auto-ID (document)
-        organizer {name: (string), email: (string)}
         week (string)
         title (string)
         urlHash (string)
         numRecipients (int)
         responses (collection)
-            responseN (document)
-                name (string)
-                availableTimes : {Sun : [8-10, 2-3], Sat: ...}
+            responseN (NAME - document)
+                response : {["times"]}
 */
 
 /*
@@ -35,14 +33,13 @@ function expects:
 
     returns promise and resolves with unique URL Hash
 */
-const createEvent = async (name, title, week, numRecipients) => {
+const createEvent = async (title, week, numRecipients) => {
 	return new Promise(async resolve => {
 		let doc = await plansRef.doc("idGenNumber").get();
 		let id = doc.data().num;
 		let hashids = new Hashids("event salt", 8);
 		urlHash = hashids.encode(id);
 		await plansRef.doc().set({
-			organizer: name,
 			week: week,
 			title: title,
 			urlHash: urlHash,
@@ -96,7 +93,7 @@ const getEventID = async urlHash => {
 function expects :
 serverEventID (string)
 returns:
-promise and resolves withstatus as object {numResponded: (int), done: (boolean)}
+promise and resolves with status as object {numResponded: (int), done: (boolean)}
 */
 const getStatus = async serverEventID => {
 	return new Promise(async resolve => {
@@ -105,14 +102,14 @@ const getStatus = async serverEventID => {
 			.collection("responses")
 			.get();
 		let numResponded = 0;
-		snapshot.forEach(() => {
+		snapshot.forEach(doc => {
 			numResponded++;
 		});
 		let doc = await plansRef.doc(serverEventID).get();
-		let numRecipients = doc.data().numRecipients;
+		let numRecipients = parseInt(doc.data().numRecipients);
 		resolve({
 			numResponded: numResponded,
-			done: numRecipients === numResponded
+			done: (numRecipients === numResponded)
 		});
 	});
 };
@@ -148,13 +145,15 @@ const bestTime = async serverEventID => {
 				result.bestTime = allResponses[v]; // update result.
 			}
 		}
+		result.bestTime = result.bestTime[0];
 		snapshot = await plansRef
 			.doc(serverEventID)
 			.collection("responses")
 			.get();
 		let conflicts = [];
 		snapshot.forEach(doc => {
-			if (doc.data().response.includes(result)) {
+			
+			if (!doc.data().response.includes(result.bestTime)) {
 				conflicts.push(doc.id);
 			}
 		});
