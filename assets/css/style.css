@@ -1,5 +1,6 @@
 #landing-page,
-#response-container {
+#response-container,
+#google-auth {
 	display: none;
 }
 

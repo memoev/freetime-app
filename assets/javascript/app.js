@@ -91,56 +91,13 @@ function handleSignoutClick(event) {
 	console.log(event);
 }
 
-const eventRedirect = async ({ name, email, title, week } = {}) => {
-	let urlHash = await createEvent(name, email, title, week);
+const eventRedirect = async ({ name, numRecipients, title, week } = {}) => {
+	let urlHash = await createEvent(name, title, week, numRecipients);
 	window.location.replace(window.location.href + "?event=" + urlHash);
 };
 
-//pulls URL from browser
-let urlParams = new URLSearchParams(window.location.search);
-
-if (urlParams.has("event")) {
-	//checks if it has an event tag
-	//this block only runs if the user is on a page that contains an event query string
-	urlHash = urlParams.get("event");
-	let serverEventID = getEventID(urlHash).then(() => {
-		$("#response.container").fadeIn();
-		if (urlParams.get("organizer")) {
-			// Runs getStatus and bestTime functions
-		} else {
-			//TODO: Display response screen first then listener for
-			$("#time-submit").click(e => {
-				e.preventDefault();
-				let userChecks = [];
-				for (let i = 0; i < 42; i++) {
-					let check = $("#input-" + i);
-					if (check.is(":checked")) {
-						userChecks.push(check.attr("data-time"));
-					}
-				}
-				// storeResponse({serverEventID, name, userChecks});
-			});
-		}
-	});
-} else {
-	$("#landing-page").fadeIn();
-	//TODO: take inputs to pass into eventRedirect
-
-	$("#get-started").click(function() {
-		eventRedirect("Gerritt", "test@tester.com", "Big Party", "8/18/2019");
-		// when clicked, input values get pushed to firebase
-	});
-}
-
-// example event call: eventRedirect({name: "Cody",email: "test@tester.com",title: "Big Party", week: "8/18/2019"})
-
-$("#take-it-home").click(function() {
-	// element id must go in this line
-	showLink();
-});
-
 // function to render textarea with the page url and copies it clipboard
-var showLink = () => {
+const showLink = () => {
 	let body = $(document.body);
 	let url = window.location.href;
 
@@ -175,3 +132,49 @@ var showLink = () => {
 	// copy to clipboard happends here!
 	document.execCommand("copy");
 };
+
+//pulls URL from browser
+let urlParams = new URLSearchParams(window.location.search);
+
+if (urlParams.has("event")) {
+	//checks if it has an event tag
+	//this block only runs if the user is on a page that contains an event query string
+	urlHash = urlParams.get("event");
+	let serverEventID = getEventID(urlHash).then(() => {
+		$("#response.container").fadeIn();
+		if (urlParams.get("organizer")) {
+			// Runs getStatus and bestTime functions
+		} else {
+			//TODO: Display response screen first then listener for
+			$("#time-submit").click(e => {
+				e.preventDefault();
+				let userChecks = [];
+				for (let i = 0; i < 42; i++) {
+					let check = $("#input-" + i);
+					if (check.is(":checked")) {
+						userChecks.push(check.attr("data-time"));
+					}
+				}
+				// storeResponse({serverEventID, name, userChecks});
+			});
+		}
+	});
+} else {
+	$("#landing-page").fadeIn();
+
+	$("#get-started").click(function() {
+		let name = $("#event-organizer").val();
+		let title = $("#event-name").val();
+		let week = $("#event-week").val();
+		let numRecipients = $("#event-participants").val();
+
+		eventRedirect({name: name, title: title, week: week, numRecipients: numRecipients});
+	});
+}
+
+// example event call: eventRedirect({name: "Cody",email: "test@tester.com",title: "Big Party", week: "8/18/2019"})
+
+$("#take-it-home").click(function() {
+	// element id must go in this line
+	showLink();
+});
