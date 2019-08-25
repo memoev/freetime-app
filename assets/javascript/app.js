@@ -166,12 +166,12 @@ if (urlParams.has("event")) {
 				$("#response-container").fadeIn();
 			} else {
 				//get URL hash
-				let urlHash = urlParams.get("event")
+				let urlHash = urlParams.get("event");
 				//check local storage for all events
 				let localEvents = JSON.parse(localStorage.getItem("events")) || {};
 				let thisEvent = localEvents[urlHash] || {};
 				let answered;
-				if (thisEvent !== undefined){
+				if (thisEvent !== undefined) {
 					answered = thisEvent.answered;
 				} else {
 					answered = false;
@@ -190,6 +190,7 @@ if (urlParams.has("event")) {
 								userChecks.push(check.attr("data-time"));
 							}
 						}
+						//send responses to DB
 						let name = $("#response-name").val();
 						let response = {
 							serverEventID: serverEventID,
@@ -201,6 +202,9 @@ if (urlParams.has("event")) {
 						$("#response-container").html(
 							"<h2> Your response was recorded!</h2>"
 						);
+						if (status.numResponded === 0) {
+							showLink();
+						}
 						$("#response-container").fadeIn();
 						thisEvent.answered = true;
 						localEvents[urlHash] = thisEvent;
@@ -230,10 +234,3 @@ if (urlParams.has("event")) {
 		});
 	});
 }
-
-// example event call: eventRedirect({name: "Cody",email: "test@tester.com",title: "Big Party", week: "8/18/2019"})
-
-$("#take-it-home").click(function() {
-	// element id must go in this line
-	showLink();
-});

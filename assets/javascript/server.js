@@ -109,7 +109,7 @@ const getStatus = async serverEventID => {
 		let numRecipients = parseInt(doc.data().numRecipients);
 		resolve({
 			numResponded: numResponded,
-			done: (numRecipients === numResponded)
+			done: numRecipients === numResponded
 		});
 	});
 };
@@ -152,7 +152,6 @@ const bestTime = async serverEventID => {
 			.get();
 		let conflicts = [];
 		snapshot.forEach(doc => {
-			
 			if (!doc.data().response.includes(result.bestTime)) {
 				conflicts.push(doc.id);
 			}
