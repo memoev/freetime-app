@@ -35,3 +35,9 @@ button {
 button:hover {
 	border-radius: 5px;
 }
+
+.error {
+	color: #DC143C;
+	font-size: 12px;
+	height: 20px;
+}
