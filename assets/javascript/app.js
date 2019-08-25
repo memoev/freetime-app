@@ -97,19 +97,21 @@ const showLink = () => {
 	body.empty();
 
 	let newDiv = $("<div>");
+	newDiv.addClass("uk-container");
 	let newDiv2 = $("<div>");
+	newDiv2.addClass("uk-container");
 	let newTextArea = $("<textarea>");
 	let newTextArea2 = $("<textarea>");
 	newTextArea.text(url);
 	newTextArea2.text(url + "&organizer=true");
 	newTextArea.select();
 
-	let newLegend = $("<h1>");
-	let newLegend2 = $("<h1>");
+	let newLegend = $("<h3>");
+	let newLegend2 = $("<h3>");
 	newLegend.text("Share this link with the people you want to invite");
 	newLegend2.text("Organizer Link!");
 
-	let newSubLegend = $("<h3>");
+	let newSubLegend = $("<h5>");
 	newSubLegend.text("Link has been copied to clipboard");
 
 	// append elements with share link url
@@ -123,6 +125,7 @@ const showLink = () => {
 
 	body.append(newDiv);
 	body.append(newDiv2);
+	body.fadeIn();
 
 	// copy to clipboard happends here!
 	document.execCommand("copy");
