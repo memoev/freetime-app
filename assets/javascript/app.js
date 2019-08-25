@@ -95,18 +95,21 @@ const showLink = () => {
 
 	// create html elements dynamically
 	body.empty();
-	newDiv = $("<div>");
-	newDiv2 = $("<div>");
-	newTextArea = $("<textarea>");
-	newTextArea2 = $("<textarea>");
+
+	let newDiv = $("<div>");
+	let newDiv2 = $("<div>");
+	let newTextArea = $("<textarea>");
+	let newTextArea2 = $("<textarea>");
 	newTextArea.text(url);
 	newTextArea2.text(url + "&organizer=true");
 	newTextArea.select();
-	newLegend = $("<h1>");
-	newLegend2 = $("<h1>");
+
+	let newLegend = $("<h1>");
+	let newLegend2 = $("<h1>");
 	newLegend.text("Share this link with the people you want to invite");
 	newLegend2.text("Organizer Link!");
-	newSubLegend = $("<h3>");
+
+	let newSubLegend = $("<h3>");
 	newSubLegend.text("Link has been copied to clipboard");
 
 	// append elements with share link url
@@ -227,10 +230,19 @@ if (urlParams.has("event")) {
 		let week = $("#event-week").val();
 		let numRecipients = $("#event-participants").val();
 
-		eventRedirect({
-			title: title,
-			week: week,
-			numRecipients: numRecipients
-		});
+		if (title === '' || week === '' || numRecipients === '') {
+			$(".error-holder").empty();
+			let newDiv = $("<div>");
+			newDiv.text('Please input all fields');
+			newDiv.addClass("error");
+			$(".error-holder").append(newDiv);
+		} else {
+			eventRedirect({
+				title: title,
+				week: week,
+				numRecipients: numRecipients
+			});
+		}
+
 	});
 }
