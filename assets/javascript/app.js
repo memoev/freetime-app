@@ -125,8 +125,8 @@ const showLink = () => {
 	let url = window.location.href;
 
 	// create html elements dynamically
-	$("#landing-page").empty(); 
-	$("#response-container").empty(); 	
+	$("#landing-page").empty();
+	$("#response-container").empty();
 
 	let newDiv = $("<div>");
 	newDiv.addClass("uk-container");
@@ -144,7 +144,9 @@ const showLink = () => {
 	let newSubLegend = $("<h4>");
 	let newSubLegend2 = $("<h4>");
 	newSubLegend.text("Link has been copied to clipboard");
-	newSubLegend2.text("Use this link when all responses are in. Keep it somewhere safe.");
+	newSubLegend2.text(
+		"Use this link when all responses are in. Keep it somewhere safe."
+	);
 
 	// append elements with share link url
 	newDiv.append(newLegend);
