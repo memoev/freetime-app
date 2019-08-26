@@ -148,8 +148,8 @@ const bestTime = async serverEventID => {
 			}
 		}
 		result.bestTime = result.bestTime[0];
-		result.calendarFormatStart = moment(result.bestTime, "dddd h a").format("YYYY-MM-DDTHH:mm:ss-6:00");
-		result.calendarFormatEnd = moment(result.bestTime, "dddd h a").add(2, 'h').format("YYYY-MM-DDTHH:mm:ss-6:00");
+		result.calendarFormatStart = moment(result.bestTime, "dddd h a").format("YYYY-MM-DDTHH:mm:ss-06:00");
+		result.calendarFormatEnd = moment(result.bestTime, "dddd h a").add(2, 'h').format("YYYY-MM-DDTHH:mm:ss-06:00");
 		snapshot = await plansRef
 			.doc(serverEventID)
 			.collection("responses")
