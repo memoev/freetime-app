@@ -52,8 +52,17 @@ function initClient() {
 					handleAddClick(event);
 				});
 			},
-			function(error) {
-				console.log(JSON.stringify(error, null, 2));
+			function(response) {
+				let newTest = $("<p>")
+				if (response.statusText === OK) {
+					newTest.text("Successfully added!").addClass("success");
+					$("#google-auth").prepend(newTest);
+				} else {
+					console.log(JSON.stringify(response, null, 2));
+					newTest.text("Error adding to calendar").addClass("error");
+					$("#google-auth").prepend(newTest);
+				}
+				
 			}
 		);
 }
