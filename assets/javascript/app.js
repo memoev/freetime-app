@@ -46,9 +46,11 @@ function initClient() {
 
 				// Handle the initial sign-in state.
 				updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-				authorizeButton.onclick = handleAuthClick;
-				signoutButton.onclick = handleSignoutClick;
-				addCalendarButton.onclick = handleAddClick(event);
+				$("#authorize_button").click(handleAuthClick);
+				$("#signout_button").click(handleSignoutClick);
+				$("#add_calendar_button").click(() => {
+					handleAddClick(event);
+				});
 			},
 			function(error) {
 				console.log(JSON.stringify(error, null, 2));
