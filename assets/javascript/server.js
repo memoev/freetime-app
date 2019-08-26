@@ -120,6 +120,8 @@ serverEventID (string)
 
 returns:
 {bestTime: (string),
+calendarFormatStart: (string as YYYY-MM-DDTHH:mm:ss-6:00),
+calendarFormatEnd: (string as YYYY-MM-DDTHH:mm:ss-6:00),
 conflicts: ["names"]
 }
 */
@@ -146,6 +148,8 @@ const bestTime = async serverEventID => {
 			}
 		}
 		result.bestTime = result.bestTime[0];
+		result.calendarFormatStart = moment(result.bestTime, "dddd h a").format("YYYY-MM-DDTHH:mm:ss-6:00");
+		result.calendarFormatEnd = moment(result.bestTime, "dddd h a").add(2, 'h').format("YYYY-MM-DDTHH:mm:ss-6:00");
 		snapshot = await plansRef
 			.doc(serverEventID)
 			.collection("responses")
@@ -161,3 +165,21 @@ const bestTime = async serverEventID => {
 		resolve(result);
 	});
 };
+
+/*
+function expects:
+serverEventID (string)
+
+returns:
+{title: (string),
+week: (string as YYYY-MM-DDTHH:mm:ss-6:00)}
+*/
+const getDetails = async serverEventID => {
+	return new Promise(async resolve => {
+		let doc = await plansRef
+			.doc(serverEventID)
+			.get();
+		let title = doc.data().title;
+		let week
+	})
+}
