@@ -188,6 +188,7 @@ if (urlParams.has("event")) {
 					"<h1>Still waiting on some responses! Check back later!"
 				);
 				$("#result-page").fadeIn();
+				
 			}
 		} else {
 			//if not organizer URL, first check status

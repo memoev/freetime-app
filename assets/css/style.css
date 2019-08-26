@@ -1,7 +1,8 @@
 #landing-page,
 #response-container,
-#google-auth,
-#result-page {
+#result-page,
+#signout_button,
+#add_calendar_button {
 	display: none;
 }
 
