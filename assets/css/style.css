@@ -11,7 +11,7 @@ html {
 	height: 100%;
 }
 
-h3, h5 {
+h2, h4 {
 	margin: 0;
 }
 
@@ -21,22 +21,22 @@ h3, h5 {
 }
 
 .uk-container {
-	width: 60%;
+	width: 700px;
 	padding-bottom: 1em;
+	position: absolute;
+	left: 50%;
+	top: 400px;
+	transform: translate(-50%, -50%);
 }
 
 .free-time {
 	text-align: center;
-	color: white;
+	color: #ffffff;
 }
 
 .uk-card {
 	padding: 20px;
 }
-
-/* .uk-legend {
-    color: #ffffff;
-} */
 
 .uk-grid {
 	font-size: 1.4em;
@@ -53,4 +53,9 @@ button {
 	font-size: 12px;
 	height: 20px;
 	padding-left: 30px;
+}
+
+textarea {
+	width: 500px;
+	height: 100px;
 }
