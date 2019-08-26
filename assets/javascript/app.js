@@ -12,7 +12,7 @@ var DISCOVERY_DOCS = [
 
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
-var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+var SCOPES = "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events";
 
 var authorizeButton = document.getElementById("authorize_button");
 var signoutButton = document.getElementById("signout_button");
@@ -89,10 +89,14 @@ function handleSignoutClick(event) {
 
 function handleAddClick(event){
 	  
-	  var request = gapi.client.calendar.events.insert({
+	  return gapi.client.calendar.events.insert({
 		'calendarId': 'primary',
 		'resource': event
-	  });
+	  }).then(function(response) {
+		// Handle the results here (response.result has the parsed body).
+		console.log("Response", response);
+	  },
+	  function(err) { console.error("Execute error", err); });;
 	  
 	  
 }
