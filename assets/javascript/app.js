@@ -97,9 +97,7 @@ const showLink = () => {
 	body.empty();
 
 	let newDiv = $("<div>");
-	newDiv.addClass("uk-container");
-	let newDiv2 = $("<div>");
-	newDiv2.addClass("uk-container");
+	newDiv.addClass("uk-container uk-text-muted");
 	let newTextArea = $("<textarea>");
 	let newTextArea2 = $("<textarea>");
 	newTextArea.text(url);
@@ -120,11 +118,10 @@ const showLink = () => {
 	newDiv.append(newSubLegend);
 
 	// append elements with organizer url
-	newDiv2.append(newTextArea2);
-	newDiv2.append(newLegend2);
+	newDiv.append(newTextArea2);
+	newDiv.append(newLegend2);
 
 	body.append(newDiv);
-	body.append(newDiv2);
 	body.fadeIn();
 
 	// copy to clipboard happends here!
