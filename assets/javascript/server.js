@@ -170,8 +170,7 @@ const bestTime = async serverEventID => {
 		let details = await getDetails(serverEventID);
 		//adds time from best time with regex
 		details.week +=
-			" " +
-			result.bestTime.replace(/[A-z]* ([0-9]*)-[0-9]* ([a-z]*)/, "$1 $2");
+			" " + result.bestTime.replace(/[A-z]* ([0-9]*)-[0-9]* ([a-z]*)/, "$1 $2");
 		//converts to moment object
 		let date = moment(details.week, "M/D/YY h a");
 

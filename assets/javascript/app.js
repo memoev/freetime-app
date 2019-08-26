@@ -189,7 +189,11 @@ if (urlParams.has("event")) {
 				let time = await bestTime(serverEventID);
 				await $("#best-time").text(time.bestTime);
 				await $("#conflicts").text(time.conflicts);
+
 				let details = await getDetails(serverEventID);
+				await $("#event-title-text-result").text(details.title);
+				await $("#event-week-text-result").text(details.week);
+
 				event = {
 					summary: details.title,
 					start: {
@@ -236,6 +240,14 @@ if (urlParams.has("event")) {
 				if (!answered) {
 					//if not answered fade in page to record response
 					$("#response-container").fadeIn();
+
+					(async () => {
+						let details = await getDetails(serverEventID);
+
+						$("#event-title-text").text(details.title);
+						$("#event-week-text").text(details.week);
+					})();
+
 					$("#time-submit").click(async e => {
 						//when submit clicked, takes all responses into an array
 						e.preventDefault();
