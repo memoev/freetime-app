@@ -94,32 +94,36 @@ const showLink = () => {
 	let url = window.location.href;
 
 	// create html elements dynamically
-	body.empty();
+	$("#landing-page").empty(); 
+	$("#response-container").empty(); 	
 
 	let newDiv = $("<div>");
-	newDiv.addClass("uk-container uk-text-muted");
+	newDiv.addClass("uk-container");
 	let newTextArea = $("<textarea>");
 	let newTextArea2 = $("<textarea>");
 	newTextArea.text(url);
 	newTextArea2.text(url + "&organizer=true");
 	newTextArea.select();
 
-	let newLegend = $("<h3>");
-	let newLegend2 = $("<h3>");
+	let newLegend = $("<h2>");
+	let newLegend2 = $("<h2>");
 	newLegend.text("Share this link with the people you want to invite");
 	newLegend2.text("Organizer Link!");
 
-	let newSubLegend = $("<h5>");
+	let newSubLegend = $("<h4>");
+	let newSubLegend2 = $("<h4>");
 	newSubLegend.text("Link has been copied to clipboard");
+	newSubLegend2.text("Use this link when all responses are in. Keep it somewhere safe.");
 
 	// append elements with share link url
-	newDiv.append(newTextArea);
 	newDiv.append(newLegend);
 	newDiv.append(newSubLegend);
+	newDiv.append(newTextArea);
 
 	// append elements with organizer url
-	newDiv.append(newTextArea2);
 	newDiv.append(newLegend2);
+	newDiv.append(newSubLegend2);
+	newDiv.append(newTextArea2);
 
 	body.append(newDiv);
 	body.fadeIn();
