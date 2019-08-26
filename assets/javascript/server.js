@@ -172,7 +172,7 @@ serverEventID (string)
 
 returns:
 {title: (string),
-week: (string as YYYY-MM-DDTHH:mm:ss-6:00)}
+week: (string as YYYY-MM-DD)}
 */
 const getDetails = async serverEventID => {
 	return new Promise(async resolve => {
@@ -180,6 +180,8 @@ const getDetails = async serverEventID => {
 			.doc(serverEventID)
 			.get();
 		let title = doc.data().title;
-		let week
+		let week = doc.data().week;
+
+		resolve({title: title, week: week})
 	})
 }
