@@ -12,7 +12,7 @@ var DISCOVERY_DOCS = [
 
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
-var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+var SCOPES = "https://www.googleapis.com/auth/calendar";
 
 var authorizeButton = document.getElementById("authorize_button");
 var signoutButton = document.getElementById("signout_button");
@@ -46,12 +46,14 @@ function initClient() {
 
 				// Handle the initial sign-in state.
 				updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-				authorizeButton.onclick = handleAuthClick;
-				signoutButton.onclick = handleSignoutClick;
-				addCalendarButton = handleAddClick(event);
+				$("#authorize_button").click(handleAuthClick);
+				$("#signout_button").click(handleSignoutClick);
+				$("#add_calendar_button").click(() => {
+					handleAddClick(event);
+				});
 			},
-			function(error) {
-				console.log(JSON.stringify(error, null, 2));
+			function(err) {
+				console.log(JSON.stringify(err, null, 2));
 			}
 		);
 }
@@ -87,14 +89,29 @@ function handleSignoutClick(event) {
 	console.log(event);
 }
 
-function handleAddClick(event){
-	  
-	  var request = gapi.client.calendar.events.insert({
-		'calendarId': 'primary',
-		'resource': event
-	  });
-	  
-	  
+function handleAddClick(event) {
+	return gapi.client.calendar.events
+		.insert({
+			calendarId: "primary",
+			resource: event
+		})
+		.then(
+			function(response) {
+				// Handle the results here (response.result has the parsed body).
+				let newTest = $("<p>");
+				if (response.statusText === "OK") {
+					newTest.text("Successfully added!").addClass("success");
+					$("#google-auth").prepend(newTest);
+				} else {
+					console.log(JSON.stringify(response, null, 2));
+					newTest.text("Error adding to calendar").addClass("error");
+					$("#google-auth").prepend(newTest);
+				}
+			},
+			function(err) {
+				console.error("Execute error", err);
+			}
+		);
 }
 
 const eventRedirect = async ({ numRecipients, title, week } = {}) => {
@@ -172,18 +189,18 @@ if (urlParams.has("event")) {
 				await $("#conflicts").text(time.conflicts);
 				let details = await getDetails(serverEventID);
 				event = {
-					'summary': details.title,
-					'start': {
-					  'dateTime': time.calendarFormatStart,
-					  'timeZone': 'America/Denver'
+					summary: details.title,
+					start: {
+						dateTime: time.calendarFormatStart,
+						timeZone: "America/Denver"
 					},
-					'end': {
-					  'dateTime': time.calendarFormatEnd,
-					  'timeZone': 'America/Denver'
+					end: {
+						dateTime: time.calendarFormatEnd,
+						timeZone: "America/Denver"
 					},
-					'reminders': {
-					  'useDefault': true
-				  }
+					reminders: {
+						useDefault: true
+					}
 				};
 
 				$("#result-page").fadeIn();
@@ -264,10 +281,10 @@ if (urlParams.has("event")) {
 		let week = $("#event-week").val();
 		let numRecipients = $("#event-participants").val();
 
-		if (title === '' || week === '' || numRecipients === '') {
+		if (title === "" || week === "" || numRecipients === "") {
 			$(".error-holder").empty();
 			let newDiv = $("<div>");
-			newDiv.text('Please input all fields');
+			newDiv.text("Please input all fields");
 			newDiv.addClass("error");
 			$(".error-holder").append(newDiv);
 		} else {
@@ -277,6 +294,5 @@ if (urlParams.has("event")) {
 				numRecipients: numRecipients
 			});
 		}
-
 	});
 }
