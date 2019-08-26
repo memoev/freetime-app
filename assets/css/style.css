@@ -42,3 +42,7 @@ button:hover {
 	font-size: 12px;
 	height: 20px;
 }
+
+.success {
+	color: lightgreen;
+}
