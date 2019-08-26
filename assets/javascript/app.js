@@ -94,9 +94,6 @@ function handleAddClick(event){
 		'resource': event
 	  });
 	  
-	  request.execute(function(event) {
-		appendPre('Event created: ' + event.htmlLink);
-	  });
 	  
 }
 
