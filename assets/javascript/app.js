@@ -99,7 +99,7 @@ function handleAddClick(event) {
 			function(response) {
 				// Handle the results here (response.result has the parsed body).
 				let newTest = $("<p>");
-				if (response.statusText === "OK") {
+				if (response.statusText === "OK" || response.statusText === null)  {
 					newTest.text("Successfully added!").addClass("success");
 					$("#google-auth").prepend(newTest);
 				} else {
