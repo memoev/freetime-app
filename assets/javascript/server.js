@@ -119,6 +119,24 @@ function expects:
 serverEventID (string)
 
 returns:
+{title: (string),
+week: (string as YYYY-MM-DD)}
+*/
+const getDetails = async serverEventID => {
+	return new Promise(async resolve => {
+		let doc = await plansRef.doc(serverEventID).get();
+		let title = doc.data().title;
+		let week = doc.data().week;
+
+		resolve({ title: title, week: week });
+	});
+};
+
+/*
+function expects:
+serverEventID (string)
+
+returns:
 {bestTime: (string),
 calendarFormatStart: (string as YYYY-MM-DDTHH:mm:ss-6:00),
 calendarFormatEnd: (string as YYYY-MM-DDTHH:mm:ss-6:00),
@@ -148,10 +166,41 @@ const bestTime = async serverEventID => {
 			}
 		}
 		result.bestTime = result.bestTime[0];
-		result.calendarFormatStart = moment(result.bestTime, "dddd h a").format(
+		//gets planned week
+		let details = await getDetails(serverEventID);
+		//adds time from best time with regex
+		details.week +=
+			" " + result.bestTime.replace(/[A-z]* ([0-9]*)-[0-9]* ([a-z]*)/, "$1 $2");
+		//converts to moment object
+		let date = moment(details.week, "M/D/YY h a");
+
+		// adjusts for day of the week. certainly a drier way to write this but in the interest of time..
+		switch (true) {
+			case /Monday/.test(result.bestTime):
+				date = date.add(1, "d");
+				break;
+			case /Tuesday/.test(result.bestTime):
+				date = date.add(2, "d");
+				break;
+			case /Wednesday/.test(result.bestTime):
+				date = date.add(3, "d");
+				break;
+			case /Thursday/.test(result.bestTime):
+				date = date.add(4, "d");
+				break;
+			case /Friday/.test(result.bestTime):
+				date = date.add(5, "d");
+				break;
+			case /Saturday/.test(result.bestTime):
+				date = date.add(6, "d");
+				break;
+			//no default
+		}
+
+		result.calendarFormatStart = moment(date).format(
 			"YYYY-MM-DDTHH:mm:ss-06:00"
 		);
-		result.calendarFormatEnd = moment(result.bestTime, "dddd h a")
+		result.calendarFormatEnd = moment(date)
 			.add(2, "h")
 			.format("YYYY-MM-DDTHH:mm:ss-06:00");
 		snapshot = await plansRef
@@ -167,23 +216,5 @@ const bestTime = async serverEventID => {
 		result.conflicts = conflicts;
 
 		resolve(result);
-	});
-};
-
-/*
-function expects:
-serverEventID (string)
-
-returns:
-{title: (string),
-week: (string as YYYY-MM-DD)}
-*/
-const getDetails = async serverEventID => {
-	return new Promise(async resolve => {
-		let doc = await plansRef.doc(serverEventID).get();
-		let title = doc.data().title;
-		let week = doc.data().week;
-
-		resolve({ title: title, week: week });
 	});
 };

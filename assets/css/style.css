@@ -6,24 +6,38 @@
 	display: none;
 }
 
-body {
+html {
 	background-color: #0b7189;
 	color: white;
 	height: 100%;
 }
 
+h2, h4 {
+	margin: 0;
+}
+
+.inpubox {
+	width: 200px;
+	left: 30px;
+}
+
+.uk-container {
+	width: 700px;
+	padding-bottom: 1em;
+	position: absolute;
+	left: 50%;
+	top: 400px;
+	transform: translate(-50%, -50%);
+}
+
 .free-time {
 	text-align: center;
-	color: white;
+	color: #ffffff;
 }
 
 .uk-card {
 	padding: 20px;
 }
-
-/* .uk-legend {
-    color: #ffffff;
-} */
 
 .uk-grid {
 	font-size: 1.4em;
@@ -31,9 +45,7 @@ body {
 
 button {
 	transition: 0.7s;
-}
-
-button:hover {
+	float: right;
 	border-radius: 5px;
 }
 
@@ -41,8 +53,13 @@ button:hover {
 	color: #DC143C;
 	font-size: 12px;
 	height: 20px;
+	padding-left: 30px;
 }
 
+textarea {
+	width: 500px;
+	height: 100px;
+}
 .success {
 	color: lightgreen;
 }

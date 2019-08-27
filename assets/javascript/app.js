@@ -125,35 +125,41 @@ const showLink = () => {
 	let url = window.location.href;
 
 	// create html elements dynamically
-	body.empty();
+	$("#landing-page").empty();
+	$("#response-container").empty();
 
 	let newDiv = $("<div>");
-	let newDiv2 = $("<div>");
+	newDiv.addClass("uk-container");
 	let newTextArea = $("<textarea>");
 	let newTextArea2 = $("<textarea>");
 	newTextArea.text(url);
 	newTextArea2.text(url + "&organizer=true");
 	newTextArea.select();
 
-	let newLegend = $("<h1>");
-	let newLegend2 = $("<h1>");
+	let newLegend = $("<h2>");
+	let newLegend2 = $("<h2>");
 	newLegend.text("Share this link with the people you want to invite");
 	newLegend2.text("Organizer Link!");
 
-	let newSubLegend = $("<h3>");
+	let newSubLegend = $("<h4>");
+	let newSubLegend2 = $("<h4>");
 	newSubLegend.text("Link has been copied to clipboard");
+	newSubLegend2.text(
+		"Use this link when all responses are in. Keep it somewhere safe."
+	);
 
 	// append elements with share link url
-	newDiv.append(newTextArea);
 	newDiv.append(newLegend);
 	newDiv.append(newSubLegend);
+	newDiv.append(newTextArea);
 
 	// append elements with organizer url
-	newDiv2.append(newTextArea2);
-	newDiv2.append(newLegend2);
+	newDiv.append(newLegend2);
+	newDiv.append(newSubLegend2);
+	newDiv.append(newTextArea2);
 
 	body.append(newDiv);
-	body.append(newDiv2);
+	body.fadeIn();
 
 	// copy to clipboard happends here!
 	document.execCommand("copy");
@@ -183,7 +189,11 @@ if (urlParams.has("event")) {
 				let time = await bestTime(serverEventID);
 				await $("#best-time").text(time.bestTime);
 				await $("#conflicts").text(time.conflicts);
+
 				let details = await getDetails(serverEventID);
+				await $("#event-title-text-result").text(details.title);
+				await $("#event-week-text-result").text(details.week);
+
 				event = {
 					summary: details.title,
 					start: {
@@ -230,6 +240,14 @@ if (urlParams.has("event")) {
 				if (!answered) {
 					//if not answered fade in page to record response
 					$("#response-container").fadeIn();
+
+					(async () => {
+						let details = await getDetails(serverEventID);
+
+						$("#event-title-text").text(details.title);
+						$("#event-week-text").text(details.week);
+					})();
+
 					$("#time-submit").click(async e => {
 						//when submit clicked, takes all responses into an array
 						e.preventDefault();
